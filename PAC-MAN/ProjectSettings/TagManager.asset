@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Cookie
   - PowerCookie
+  - Warp
   layers:
   - Default
   - TransparentFX

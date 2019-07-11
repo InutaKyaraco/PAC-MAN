@@ -9,8 +9,9 @@ public class ItemController : MonoBehaviour
 
             if (this.gameObject.tag == "PowerCookie") {
                 Debug.Log("Power");
-                //プレイヤー強化＆敵逃げる　コルーチン使えば多分おけ
-            }
+                //プレイヤー強化＆敵逃げる　コルーチン使えば多分おけ.コルーチン内は指定秒数まで無敵状態に設定するs
+
+                GetComponent<MonstarController>().ChangeGameStatus("hogehoge");
 
             if (this.gameObject.tag == "Cookie") {
                 //得点アップ。UIにお知らせする
@@ -19,4 +20,9 @@ public class ItemController : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    //void ConveyUI()
+    //{
+    //    //UIDirectiorスクリプトに得点アップを伝えるやつ作る
+    //}
 }

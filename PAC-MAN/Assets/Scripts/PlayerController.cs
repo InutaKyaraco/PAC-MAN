@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float speed = 0.05f;
+
     Vector3 touchStartPos;
     Vector3 touchEndPos;
     enum Directions {
@@ -20,8 +22,24 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DetectButton();
         DetectFric();
         MovePlayer();
+    }
+
+    void DetectButton() {
+        if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            PlayerState = (int)Directions.Right;
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+            PlayerState = (int)Directions.Left;
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow)) {
+            PlayerState = (int)Directions.Up;
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow)) {
+            PlayerState = (int)Directions.Down;
+        }
     }
 
     void DetectFric()
@@ -89,19 +107,19 @@ public class PlayerController : MonoBehaviour
     }
 
     void MoveRight() {
-        this.transform.Translate(0.1f, 0, 0, Space.World);
+        this.transform.Translate(speed * Time.deltaTime, 0, 0, Space.World);
         
     }
 
     void MoveLeft() {
-        this.transform.Translate(-0.1f, 0, 0, Space.World);
+        this.transform.Translate(-(speed * Time.deltaTime), 0, 0, Space.World);
     }
 
     void MoveUp() {
-        this.transform.Translate(0, 0, 0.1f, Space.World);
+        this.transform.Translate(0, 0, speed * Time.deltaTime, Space.World);
     }
 
     void MoveDown() {
-        this.transform.Translate(0, 0, -0.1f, Space.World);
+        this.transform.Translate(0, 0, -(speed * Time.deltaTime), Space.World);
     }
 }
